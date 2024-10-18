@@ -210,7 +210,7 @@ class Bacteria {
       //weightStrength = weightStrength <= 1.0 ? weightStrength : 1.0;
       
       // does not have to change color bc it is already random
-      bacColor = changeColorRandomly(parent.bacColor, 1*((mutationW+mutationS)/2));
+      //bacColor = changeColorRandomly(parent.bacColor, 1*((mutationW+mutationS)/2));
       return;
     }
     
