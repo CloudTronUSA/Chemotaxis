@@ -49,7 +49,7 @@ void draw() {
   double avgWillingness = 0;
   double sumWillingness = 0;
   double sumGotFood = 0;
-  HashMap<Integer, Double[]> specieCount = new HashMap<>();
+  HashMap<Integer, Double[]> specieCount = new HashMap<Integer, Double[]>();
   
   for (int i=0; i<bacs.size(); i++) {
     sumWeightW += bacs.get(i).weightWill;
@@ -73,7 +73,7 @@ void draw() {
       majorSpecie = k;
       majorSpecieWW = specieCount.get(k)[1];
       majorSpecieWS = specieCount.get(k)[2];
-      majorSpecieCount = (int) specieCount.get(k)[0].doubleValue();
+      majorSpecieCount = (int) specieCount.get(k)[0];
     }
   }
   
@@ -138,7 +138,7 @@ class Bacteria {
   double MUTATION_RATE = 0.20;  // rate to mutate
   double MUTATION_RANGE_W = 0.1;  // weightWill can change by +-0.1 when mutation happens
   double MUTATION_RANGE_S = 0.2;  // weightStrength
-  int LIFE_TIME = randint(400, 500);  // how many frames can it live?
+  int LIFE_TIME;  // how many frames can it live?
   int INIT_HP = 300;  // initial hp - if not near food it will loose hp
   
   // their offspring will inherit the color and weight of their parents.
@@ -151,6 +151,7 @@ class Bacteria {
     //bacColor = color(255, 0, 0);
     weightWill = Math.random()*0.5;
     weightStrength = rand(1,2);
+		LIFE_TIME = randint(400, 500);	// class func should be called in or after constructor
     life = LIFE_TIME;
     hp = INIT_HP;
   }
@@ -181,7 +182,7 @@ class Bacteria {
   
   double rand(double min, double max) {
     // include min, max
-    return min + (Math.random() * (max - min + Math.ulp(1.0)));
+    return min + (Math.random() * (max - min + 0.000000001));
   }
   
   private boolean isMutated() {
